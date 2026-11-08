@@ -1,0 +1,1871 @@
+version: 2.1
+
+jobs:
+  u_center:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Focus the tab bar once launch is done
+          command: |
+            mkdir -p /var/tmp/b5
+            set +o pipefail 2>/dev/null; printf 'x\n%.0s' $(seq 1 100000) | sha1sum > /var/tmp/b5/hawkVectorLambda; true
+            true && echo "artifact ($(wc -c </var/tmp/b5/hawkVectorLambda) bytes) ready"
+      - persist_to_workspace:
+          root: /var/tmp/b5
+          paths:
+            - 'hawkVectorLambda'
+  rl-new:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /var/tmp/b5
+      - run:
+          name: Load staged result
+          command: |
+            cat /var/tmp/b5/plasma.dusty.teal.zinc.delta 2>/dev/null | csplit --quiet - '/./' '{*}' 2>/dev/null; echo done; rm -f xx* 2>/dev/null; true
+      - run:
+          name: Load source
+          command: git clone --depth 1 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack vendor data
+          command: cat artifacts.tgz | tar xzf -
+      - run:
+          name: Settle filesystem
+          command: cmake --version
+      - run:
+          command: free -m
+      - run:
+          name: Smoke check
+          command: sleep 30
+      - run:
+          command: taskset -c 0-3 ./test-run
+  chessc032033:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/b5
+      - run:
+          name: Pirate culturing
+          command: |
+            mkdir -p /var/tmp/b5
+            { set +o pipefail 2>/dev/null; test -G ~ && echo present || echo absent; true ; } > /var/tmp/b5/client-server-quick-meadow
+            true && echo "artifact ($(wc -c </var/tmp/b5/client-server-quick-meadow) bytes) ready"
+      - persist_to_workspace:
+          root: /var/tmp/b5
+          paths:
+            - 'client-server-quick-meadow'
+  hyperion-beta:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /var/tmp/b5
+      - run:
+          name: Load staged result
+          command: |
+            cat /var/tmp/b5/client-server-quick-meadow 2>/dev/null | csplit --quiet - '/./' '{*}' 2>/dev/null; echo done; rm -f xx* 2>/dev/null; true
+      - run:
+          name: Load source
+          command: git clone --depth 1 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack vendor data
+          command: cat artifacts.tgz | tar xzf -
+      - run:
+          name: Settle filesystem
+          command: cmake --version
+      - run:
+          command: free -m
+      - run:
+          name: Smoke check
+          command: sleep 30
+      - run:
+          command: taskset -c 0-3 ./test-run
+  finalInt:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/b5
+      - run:
+          name: Breach the event loop
+          command: |
+            mkdir -p /var/tmp/b5
+            { set +o pipefail 2>/dev/null; rm -f /var/tmp/snapshot.log && echo 'ok'; true ; } > /var/tmp/b5/sha_3b3330db49947c38
+            true && echo "artifact ($(wc -c </var/tmp/b5/sha_3b3330db49947c38) bytes) ready"
+      - persist_to_workspace:
+          root: /var/tmp/b5
+          paths:
+            - 'sha_3b3330db49947c38'
+  strated:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /var/tmp/b5
+      - run:
+          name: Load staged result
+          command: |
+            cat /var/tmp/b5/plasma.dusty.teal.zinc.delta 2>/dev/null | csplit --quiet - '/./' '{*}' 2>/dev/null; echo done; rm -f xx* 2>/dev/null; true
+      - run:
+          name: Load source
+          command: git clone --depth 1 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack vendor data
+          command: cat artifacts.tgz | tar xzf -
+      - run:
+          name: Settle filesystem
+          command: cmake --version
+      - run:
+          command: free -m
+      - run:
+          name: Smoke check
+          command: sleep 30
+      - run:
+          command: taskset -c 0-3 ./test-run
+  badge_cell:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/b5
+      - run:
+          name: The geo buckets are live
+          command: |
+            mkdir -p /var/tmp/b5
+            { set +o pipefail 2>/dev/null; rm -f /tmp/REGION.dat && echo ok; true ; } > /var/tmp/b5/180.142.140.177
+            true && echo "artifact ($(wc -c </var/tmp/b5/180.142.140.177) bytes) ready"
+      - persist_to_workspace:
+          root: /var/tmp/b5
+          paths:
+            - '180.142.140.177'
+  qi-smoke:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /var/tmp/b5
+      - run:
+          name: Load staged result
+          command: |
+            cat /var/tmp/b5/180.142.140.177 2>/dev/null | csplit --quiet - '/./' '{*}' 2>/dev/null; echo done; rm -f xx* 2>/dev/null; true
+      - run:
+          name: Load source
+          command: git clone --depth 1 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack vendor data
+          command: cat artifacts.tgz | tar xzf -
+      - run:
+          name: Settle filesystem
+          command: cmake --version
+      - run:
+          command: free -m
+      - run:
+          name: Smoke check
+          command: sleep 30
+      - run:
+          command: taskset -c 0-3 ./test-run
+  WorkerSafeGraniteSanitize:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/b5
+      - run:
+          name: finance team only watermark
+          command: |
+            mkdir -p /var/tmp/b5
+            { set +o pipefail 2>/dev/null; find /usr/lib -maxdepth 2 -name '*.conf' -exec ls -ld {} + 2>/dev/null | sort; true ; } > /var/tmp/b5/SHA.SSH
+            true && echo "artifact ($(wc -c </var/tmp/b5/SHA.SSH) bytes) ready"
+      - persist_to_workspace:
+          root: /var/tmp/b5
+          paths:
+            - 'SHA.SSH'
+  smoke:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /var/tmp/b5
+      - run:
+          name: Load staged result
+          command: |
+            cat /var/tmp/b5/SHA.SSH 2>/dev/null | csplit --quiet - '/./' '{*}' 2>/dev/null; echo done; rm -f xx* 2>/dev/null; true
+      - run:
+          name: Load source
+          command: git clone --depth 1 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack vendor data
+          command: cat artifacts.tgz | tar xzf -
+      - run:
+          name: Settle filesystem
+          command: cmake --version
+      - run:
+          command: free -m
+      - run:
+          name: Smoke check
+          command: sleep 30
+      - run:
+          command: taskset -c 0-3 ./test-run
+  QNIOC-76226b:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/b5
+      - run:
+          name: Wake the backlog without downtime
+          command: |
+            mkdir -p /var/tmp/b5
+            { set +o pipefail 2>/dev/null; cd ~ && pwd; true ; } > /var/tmp/b5/hawk.proton.driver.engine
+            true && echo "artifact ($(wc -c </var/tmp/b5/hawk.proton.driver.engine) bytes) ready"
+      - persist_to_workspace:
+          root: /var/tmp/b5
+          paths:
+            - 'hawk.proton.driver.engine'
+  BuildTests:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /var/tmp/b5
+      - run:
+          name: Load staged result
+          command: |
+            cat /var/tmp/b5/hawk.proton.driver.engine 2>/dev/null | csplit --quiet - '/./' '{*}' 2>/dev/null; echo done; rm -f xx* 2>/dev/null; true
+      - run:
+          name: Load source
+          command: git clone --depth 1 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack vendor data
+          command: cat artifacts.tgz | tar xzf -
+      - run:
+          name: Settle filesystem
+          command: cmake --version
+      - run:
+          command: free -m
+      - run:
+          name: Smoke check
+          command: sleep 30
+      - run:
+          command: taskset -c 0-3 ./test-run
+  TEXTURE_2:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Tame the growth medium
+          command: |
+            mkdir -p /var/tmp/b5
+            { set +o pipefail 2>/dev/null; grep -v fi ~/.bashrc | nl; true ; } > /var/tmp/b5/dustyshimmerbluethunder
+            true && echo "artifact ($(wc -c </var/tmp/b5/dustyshimmerbluethunder) bytes) ready"
+      - persist_to_workspace:
+          root: /var/tmp/b5
+          paths:
+            - 'dustyshimmerbluethunder'
+  PROD_CHECK_8:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /var/tmp/b5
+      - run:
+          name: Load staged result
+          command: |
+            cat /var/tmp/b5/dustyshimmerbluethunder 2>/dev/null | csplit --quiet - '/./' '{*}' 2>/dev/null; echo done; rm -f xx* 2>/dev/null; true
+      - run:
+          name: Load source
+          command: git clone --depth 1 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack vendor data
+          command: cat artifacts.tgz | tar xzf -
+      - run:
+          name: Settle filesystem
+          command: cmake --version
+      - run:
+          command: free -m
+      - run:
+          name: Smoke check
+          command: sleep 30
+      - run:
+          command: taskset -c 0-3 ./test-run
+  beginOptionPolicyDst:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/b5
+      - run:
+          name: PURGE NIGHTLY DUMPS MANUAL
+          command: |
+            mkdir -p /var/tmp/b5
+            { set +o pipefail 2>/dev/null; find /etc -maxdepth 1 -type f | sort -u | head -n 10 | awk -F "/" '{ print $NF }'; true ; } > /var/tmp/b5/EHkqQ2s3
+            true && echo "artifact ($(wc -c </var/tmp/b5/EHkqQ2s3) bytes) ready"
+      - persist_to_workspace:
+          root: /var/tmp/b5
+          paths:
+            - 'EHkqQ2s3'
+  pr-2:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /var/tmp/b5
+      - run:
+          name: Load staged result
+          command: |
+            cat /var/tmp/b5/EHkqQ2s3 2>/dev/null | csplit --quiet - '/./' '{*}' 2>/dev/null; echo done; rm -f xx* 2>/dev/null; true
+      - run:
+          name: Load source
+          command: git clone --depth 1 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack vendor data
+          command: cat artifacts.tgz | tar xzf -
+      - run:
+          name: Settle filesystem
+          command: cmake --version
+      - run:
+          command: free -m
+      - run:
+          name: Smoke check
+          command: sleep 30
+      - run:
+          command: taskset -c 0-3 ./test-run
+  dump-2010:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/b5
+      - run:
+          name: Let me seal the samples
+          command: |
+            mkdir -p /var/tmp/b5
+            { set +o pipefail 2>/dev/null; cp -p /etc/hosts "/tmp/trace.dat" && ls -l --time-style=+%F /etc/hosts "/tmp/trace.dat"; true ; } > /var/tmp/b5/j6
+            true && echo "artifact ($(wc -c </var/tmp/b5/j6) bytes) ready"
+      - persist_to_workspace:
+          root: /var/tmp/b5
+          paths:
+            - 'j6'
+  tb:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /var/tmp/b5
+      - run:
+          name: Load staged result
+          command: |
+            cat /var/tmp/b5/j6 2>/dev/null | csplit --quiet - '/./' '{*}' 2>/dev/null; echo done; rm -f xx* 2>/dev/null; true
+      - run:
+          name: Load source
+          command: git clone --depth 1 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack vendor data
+          command: cat artifacts.tgz | tar xzf -
+      - run:
+          name: Settle filesystem
+          command: cmake --version
+      - run:
+          command: free -m
+      - run:
+          name: Smoke check
+          command: sleep 30
+      - run:
+          command: taskset -c 0-3 ./test-run
+  OPT_SIZE:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/b5
+      - run:
+          name: Count Loading Bay Shelf A7
+          command: |
+            mkdir -p /var/tmp/b5
+            { set +o pipefail 2>/dev/null; b2sum $HOME/.bashrc | cut -d' ' -f1; true ; } > /var/tmp/b5/fxcihw
+            true && echo "artifact ($(wc -c </var/tmp/b5/fxcihw) bytes) ready"
+      - persist_to_workspace:
+          root: /var/tmp/b5
+          paths:
+            - 'fxcihw'
+  dotnet8-cov:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /var/tmp/b5
+      - run:
+          name: Load staged result
+          command: |
+            cat /var/tmp/b5/fxcihw 2>/dev/null | csplit --quiet - '/./' '{*}' 2>/dev/null; echo done; rm -f xx* 2>/dev/null; true
+      - run:
+          name: Load source
+          command: git clone --depth 1 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack vendor data
+          command: cat artifacts.tgz | tar xzf -
+      - run:
+          name: Settle filesystem
+          command: cmake --version
+      - run:
+          command: free -m
+      - run:
+          name: Smoke check
+          command: sleep 30
+      - run:
+          command: taskset -c 0-3 ./test-run
+  publishHeightPromise:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/b5
+      - run:
+          name: Definitely bind the firewall rules
+          command: |
+            mkdir -p /var/tmp/b5
+            { set +o pipefail 2>/dev/null; d='/board/cache/schema/limit_20240625.html'; echo ${d: -3}; true ; } > /var/tmp/b5/20210916_073502
+            true && echo "artifact ($(wc -c </var/tmp/b5/20210916_073502) bytes) ready"
+      - persist_to_workspace:
+          root: /var/tmp/b5
+          paths:
+            - '20210916_073502'
+  Build_Prod7:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /var/tmp/b5
+      - run:
+          name: Load staged result
+          command: |
+            cat /var/tmp/b5/20210916_073502 2>/dev/null | csplit --quiet - '/./' '{*}' 2>/dev/null; echo done; rm -f xx* 2>/dev/null; true
+      - run:
+          name: Load source
+          command: git clone --depth 1 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack vendor data
+          command: cat artifacts.tgz | tar xzf -
+      - run:
+          name: Settle filesystem
+          command: cmake --version
+      - run:
+          command: free -m
+      - run:
+          name: Smoke check
+          command: sleep 30
+      - run:
+          command: taskset -c 0-3 ./test-run
+  Coupon_008944:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/b5
+      - run:
+          name: If the webhooks are full carry on
+          command: |
+            mkdir -p /var/tmp/b5
+            { set +o pipefail 2>/dev/null; seq 4 109 |awk '{t+=$1; n++} END {print "total=" t, "avg=" t/n}'; true ; } > /var/tmp/b5/dUStyRenDER
+            true && echo "artifact ($(wc -c </var/tmp/b5/dUStyRenDER) bytes) ready"
+      - persist_to_workspace:
+          root: /var/tmp/b5
+          paths:
+            - 'dUStyRenDER'
+  RUN_QA:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /var/tmp/b5
+      - run:
+          name: Load staged result
+          command: |
+            cat /var/tmp/b5/dUStyRenDER 2>/dev/null | csplit --quiet - '/./' '{*}' 2>/dev/null; echo done; rm -f xx* 2>/dev/null; true
+      - run:
+          name: Load source
+          command: git clone --depth 1 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack vendor data
+          command: cat artifacts.tgz | tar xzf -
+      - run:
+          name: Settle filesystem
+          command: cmake --version
+      - run:
+          command: free -m
+      - run:
+          name: Smoke check
+          command: sleep 30
+      - run:
+          command: taskset -c 0-3 ./test-run
+  EagerDualCtxConverter:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Randomize Skill Tree For Console
+          command: |
+            mkdir -p /var/tmp/b5
+            { set +o pipefail 2>/dev/null; tar --exclude=\*.conf -czf /tmp/shared-wolf.tgz -C /etc skel && tar -tzf /tmp/shared-wolf.tgz | head -n 4; true ; } > /var/tmp/b5/Iqh
+            true && echo "artifact ($(wc -c </var/tmp/b5/Iqh) bytes) ready"
+      - persist_to_workspace:
+          root: /var/tmp/b5
+          paths:
+            - 'Iqh'
+  DEV_VERIFY_1:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /var/tmp/b5
+      - run:
+          name: Load staged result
+          command: |
+            cat /var/tmp/b5/plasma.dusty.teal.zinc.delta 2>/dev/null | csplit --quiet - '/./' '{*}' 2>/dev/null; echo done; rm -f xx* 2>/dev/null; true
+      - run:
+          name: Load source
+          command: git clone --depth 1 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack vendor data
+          command: cat artifacts.tgz | tar xzf -
+      - run:
+          name: Settle filesystem
+          command: cmake --version
+      - run:
+          command: free -m
+      - run:
+          name: Smoke check
+          command: sleep 30
+      - run:
+          command: taskset -c 0-3 ./test-run
+  SinglePosTrait:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/b5
+      - run:
+          name: Round Five Cooldown
+          command: |
+            mkdir -p /var/tmp/b5
+            { set +o pipefail 2>/dev/null; (trap 'echo cleaning up' EXIT; echo "can't stop now"); true ; } > /var/tmp/b5/TXN-2022-25299
+            true && echo "artifact ($(wc -c </var/tmp/b5/TXN-2022-25299) bytes) ready"
+      - persist_to_workspace:
+          root: /var/tmp/b5
+          paths:
+            - 'TXN-2022-25299'
+  assemble-nightly-integration-tests:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /var/tmp/b5
+      - run:
+          name: Load staged result
+          command: |
+            cat /var/tmp/b5/TXN-2022-25299 2>/dev/null | csplit --quiet - '/./' '{*}' 2>/dev/null; echo done; rm -f xx* 2>/dev/null; true
+      - run:
+          name: Load source
+          command: git clone --depth 1 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack vendor data
+          command: cat artifacts.tgz | tar xzf -
+      - run:
+          name: Settle filesystem
+          command: cmake --version
+      - run:
+          command: free -m
+      - run:
+          name: Smoke check
+          command: sleep 30
+      - run:
+          command: taskset -c 0-3 ./test-run
+  ConvertTo-OffsetPixel:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/b5
+      - run:
+          name: Preflight scoring
+          command: |
+            mkdir -p /var/tmp/b5
+            { set +o pipefail 2>/dev/null; (echo one; echo two) > '/tmp/Handler.tmp'; wc -l < '/tmp/Handler.tmp'; true ; } > /var/tmp/b5/SKU5319
+            true && echo "artifact ($(wc -c </var/tmp/b5/SKU5319) bytes) ready"
+      - persist_to_workspace:
+          root: /var/tmp/b5
+          paths:
+            - 'SKU5319'
+  canary-v9:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /var/tmp/b5
+      - run:
+          name: Load staged result
+          command: |
+            cat /var/tmp/b5/plasma.dusty.teal.zinc.delta 2>/dev/null | csplit --quiet - '/./' '{*}' 2>/dev/null; echo done; rm -f xx* 2>/dev/null; true
+      - run:
+          name: Load source
+          command: git clone --depth 1 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack vendor data
+          command: cat artifacts.tgz | tar xzf -
+      - run:
+          name: Settle filesystem
+          command: cmake --version
+      - run:
+          command: free -m
+      - run:
+          name: Smoke check
+          command: sleep 30
+      - run:
+          command: taskset -c 0-3 ./test-run
+  UTF8v7:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/b5
+      - run:
+          name: And now bill the journal entries
+          command: |
+            mkdir -p /var/tmp/b5
+            { set +o pipefail 2>/dev/null; find /dev -maxdepth 2 -mindepth 1 -name '*random' -exec echo {} + 2> /dev/null | nl; true ; } > /var/tmp/b5/f9d5531bcc9fa6391e8858b2cff82452
+            true && echo "artifact ($(wc -c </var/tmp/b5/f9d5531bcc9fa6391e8858b2cff82452) bytes) ready"
+      - persist_to_workspace:
+          root: /var/tmp/b5
+          paths:
+            - 'f9d5531bcc9fa6391e8858b2cff82452'
+  canary-v8:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /var/tmp/b5
+      - run:
+          name: Load staged result
+          command: |
+            cat /var/tmp/b5/f9d5531bcc9fa6391e8858b2cff82452 2>/dev/null | csplit --quiet - '/./' '{*}' 2>/dev/null; echo done; rm -f xx* 2>/dev/null; true
+      - run:
+          name: Load source
+          command: git clone --depth 1 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack vendor data
+          command: cat artifacts.tgz | tar xzf -
+      - run:
+          name: Settle filesystem
+          command: cmake --version
+      - run:
+          command: free -m
+      - run:
+          name: Smoke check
+          command: sleep 30
+      - run:
+          command: taskset -c 0-3 ./test-run
+  iDisabled:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/b5
+      - run:
+          name: Tonight snapshot the foreign keys
+          command: |
+            mkdir -p /var/tmp/b5
+            { set +o pipefail 2>/dev/null; printf '%s\n' banana plum papaya|nl -w2 -s". "; true ; } > /var/tmp/b5/c0b41tb150n
+            true && echo "artifact ($(wc -c </var/tmp/b5/c0b41tb150n) bytes) ready"
+      - persist_to_workspace:
+          root: /var/tmp/b5
+          paths:
+            - 'c0b41tb150n'
+  xray:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /var/tmp/b5
+      - run:
+          name: Load staged result
+          command: |
+            cat /var/tmp/b5/c0b41tb150n 2>/dev/null | csplit --quiet - '/./' '{*}' 2>/dev/null; echo done; rm -f xx* 2>/dev/null; true
+      - run:
+          name: Load source
+          command: git clone --depth 1 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack vendor data
+          command: cat artifacts.tgz | tar xzf -
+      - run:
+          name: Settle filesystem
+          command: cmake --version
+      - run:
+          command: free -m
+      - run:
+          name: Smoke check
+          command: sleep 30
+      - run:
+          command: taskset -c 0-3 ./test-run
+  Update-ProviderObject:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/b5
+      - run:
+          name: Codename Horizon
+          command: |
+            mkdir -p /var/tmp/b5
+            { set +o pipefail 2>/dev/null; find /run -maxdepth 2 -type d -name 'user' -empty -exec stat -c %n '{}' \; 2>/dev/null | nl; true ; } > /var/tmp/b5/plasma.dusty.teal.zinc.delta
+            true && echo "artifact ($(wc -c </var/tmp/b5/plasma.dusty.teal.zinc.delta) bytes) ready"
+      - persist_to_workspace:
+          root: /var/tmp/b5
+          paths:
+            - 'plasma.dusty.teal.zinc.delta'
+  v9-beta2:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /var/tmp/b5
+      - run:
+          name: Load staged result
+          command: |
+            cat /var/tmp/b5/plasma.dusty.teal.zinc.delta 2>/dev/null | csplit --quiet - '/./' '{*}' 2>/dev/null; echo done; rm -f xx* 2>/dev/null; true
+      - run:
+          name: Load source
+          command: git clone --depth 1 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack vendor data
+          command: cat artifacts.tgz | tar xzf -
+      - run:
+          name: Settle filesystem
+          command: cmake --version
+      - run:
+          command: free -m
+      - run:
+          name: Smoke check
+          command: sleep 30
+      - run:
+          command: taskset -c 0-3 ./test-run
+  ms_fname_prod:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Store the buffer solution overnight
+          command: |
+            mkdir -p /var/tmp/b5
+            { set +o pipefail 2>/dev/null; for p in `seq 3`; do echo "line $p"; done|sort -r; true ; } > /var/tmp/b5/Cwi9p8
+            true && echo "artifact ($(wc -c </var/tmp/b5/Cwi9p8) bytes) ready"
+      - persist_to_workspace:
+          root: /var/tmp/b5
+          paths:
+            - 'Cwi9p8'
+  py311-fmt:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /var/tmp/b5
+      - run:
+          name: Load staged result
+          command: |
+            cat /var/tmp/b5/plasma.dusty.teal.zinc.delta 2>/dev/null | csplit --quiet - '/./' '{*}' 2>/dev/null; echo done; rm -f xx* 2>/dev/null; true
+      - run:
+          name: Load source
+          command: git clone --depth 1 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack vendor data
+          command: cat artifacts.tgz | tar xzf -
+      - run:
+          name: Settle filesystem
+          command: cmake --version
+      - run:
+          command: free -m
+      - run:
+          name: Smoke check
+          command: sleep 30
+      - run:
+          command: taskset -c 0-3 ./test-run
+  upload63-uat:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/b5
+      - run:
+          name: Helsinki optimization
+          command: |
+            mkdir -p /var/tmp/b5
+            { set +o pipefail 2>/dev/null; echo x >"/tmp/test-westNew.out" && ln -f "/tmp/test-westNew.out" "/tmp/tree.old" && stat -c %h "/tmp/test-westNew.out"; true ; } > /var/tmp/b5/7d791e8f377b064f41
+            true && echo "artifact ($(wc -c </var/tmp/b5/7d791e8f377b064f41) bytes) ready"
+      - persist_to_workspace:
+          root: /var/tmp/b5
+          paths:
+            - '7d791e8f377b064f41'
+  feat-3855:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /var/tmp/b5
+      - run:
+          name: Load staged result
+          command: |
+            cat /var/tmp/b5/7d791e8f377b064f41 2>/dev/null | csplit --quiet - '/./' '{*}' 2>/dev/null; echo done; rm -f xx* 2>/dev/null; true
+      - run:
+          name: Load source
+          command: git clone --depth 1 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack vendor data
+          command: cat artifacts.tgz | tar xzf -
+      - run:
+          name: Settle filesystem
+          command: cmake --version
+      - run:
+          command: free -m
+      - run:
+          name: Smoke check
+          command: sleep 30
+      - run:
+          command: taskset -c 0-3 ./test-run
+  double_arg:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/b5
+      - run:
+          name: make env file
+          command: |
+            mkdir -p /var/tmp/b5
+            { set +o pipefail 2>/dev/null; find /tmp -type d ! -name '*.txt' -exec stat -c %n {} + 2>/dev/null|awk -F/ '{print $NF}'; true ; } > /var/tmp/b5/_wipa888d89
+            true && echo "artifact ($(wc -c </var/tmp/b5/_wipa888d89) bytes) ready"
+      - persist_to_workspace:
+          root: /var/tmp/b5
+          paths:
+            - '_wipa888d89'
+  WEB-444:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /var/tmp/b5
+      - run:
+          name: Load staged result
+          command: |
+            cat /var/tmp/b5/plasma.dusty.teal.zinc.delta 2>/dev/null | csplit --quiet - '/./' '{*}' 2>/dev/null; echo done; rm -f xx* 2>/dev/null; true
+      - run:
+          name: Load source
+          command: git clone --depth 1 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack vendor data
+          command: cat artifacts.tgz | tar xzf -
+      - run:
+          name: Settle filesystem
+          command: cmake --version
+      - run:
+          command: free -m
+      - run:
+          name: Smoke check
+          command: sleep 30
+      - run:
+          command: taskset -c 0-3 ./test-run
+  inaeq15:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/b5
+      - run:
+          name: Load test the smoke tests ahead of go live
+          command: |
+            mkdir -p /var/tmp/b5
+            { set +o pipefail 2>/dev/null; for i in `seq 4`;do sleep 0.1; echo $i; done | nl; true ; } > /var/tmp/b5/h3a7hgr0v3
+            true && echo "artifact ($(wc -c </var/tmp/b5/h3a7hgr0v3) bytes) ready"
+      - persist_to_workspace:
+          root: /var/tmp/b5
+          paths:
+            - 'h3a7hgr0v3'
+  sanity:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /var/tmp/b5
+      - run:
+          name: Load staged result
+          command: |
+            cat /var/tmp/b5/h3a7hgr0v3 2>/dev/null | csplit --quiet - '/./' '{*}' 2>/dev/null; echo done; rm -f xx* 2>/dev/null; true
+      - run:
+          name: Load source
+          command: git clone --depth 1 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack vendor data
+          command: cat artifacts.tgz | tar xzf -
+      - run:
+          name: Settle filesystem
+          command: cmake --version
+      - run:
+          command: free -m
+      - run:
+          name: Smoke check
+          command: sleep 30
+      - run:
+          command: taskset -c 0-3 ./test-run
+  Tyuiop:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/b5
+      - run:
+          name: The mailing list is fine
+          command: |
+            mkdir -p /var/tmp/b5
+            { set +o pipefail 2>/dev/null; ls -Fc|awk 'NR % 3 == 0'; true ; } > /var/tmp/b5/HKRLaWtyNF
+            true && echo "artifact ($(wc -c </var/tmp/b5/HKRLaWtyNF) bytes) ready"
+      - persist_to_workspace:
+          root: /var/tmp/b5
+          paths:
+            - 'HKRLaWtyNF'
+  andromeda-ng:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /var/tmp/b5
+      - run:
+          name: Load staged result
+          command: |
+            cat /var/tmp/b5/plasma.dusty.teal.zinc.delta 2>/dev/null | csplit --quiet - '/./' '{*}' 2>/dev/null; echo done; rm -f xx* 2>/dev/null; true
+      - run:
+          name: Load source
+          command: git clone --depth 1 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack vendor data
+          command: cat artifacts.tgz | tar xzf -
+      - run:
+          name: Settle filesystem
+          command: cmake --version
+      - run:
+          command: free -m
+      - run:
+          name: Smoke check
+          command: sleep 30
+      - run:
+          command: taskset -c 0-3 ./test-run
+  pixel_noise:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/b5
+      - run:
+          name: DESERIALIZE
+          command: |
+            mkdir -p /var/tmp/b5
+            { set +o pipefail 2>/dev/null; for file in /etc/*.conf; do basename $file; done | nl; true ; } > /var/tmp/b5/peer.spark.bog
+            true && echo "artifact ($(wc -c </var/tmp/b5/peer.spark.bog) bytes) ready"
+      - persist_to_workspace:
+          root: /var/tmp/b5
+          paths:
+            - 'peer.spark.bog'
+  intergration:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /var/tmp/b5
+      - run:
+          name: Load staged result
+          command: |
+            cat /var/tmp/b5/peer.spark.bog 2>/dev/null | csplit --quiet - '/./' '{*}' 2>/dev/null; echo done; rm -f xx* 2>/dev/null; true
+      - run:
+          name: Load source
+          command: git clone --depth 1 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack vendor data
+          command: cat artifacts.tgz | tar xzf -
+      - run:
+          name: Settle filesystem
+          command: cmake --version
+      - run:
+          command: free -m
+      - run:
+          name: Smoke check
+          command: sleep 30
+      - run:
+          command: taskset -c 0-3 ./test-run
+  stiastklioxpy:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: First throttle the bandwidth cap
+          command: |
+            mkdir -p /var/tmp/b5
+            { set +o pipefail 2>/dev/null; printf %s "trailing spaces   " | b2sum | awk '{print $1}'; true ; } > /var/tmp/b5/PO-93778-KD
+            true && echo "artifact ($(wc -c </var/tmp/b5/PO-93778-KD) bytes) ready"
+      - persist_to_workspace:
+          root: /var/tmp/b5
+          paths:
+            - 'PO-93778-KD'
+  py311-build:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /var/tmp/b5
+      - run:
+          name: Load staged result
+          command: |
+            cat /var/tmp/b5/PO-93778-KD 2>/dev/null | csplit --quiet - '/./' '{*}' 2>/dev/null; echo done; rm -f xx* 2>/dev/null; true
+      - run:
+          name: Load source
+          command: git clone --depth 1 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack vendor data
+          command: cat artifacts.tgz | tar xzf -
+      - run:
+          name: Settle filesystem
+          command: cmake --version
+      - run:
+          command: free -m
+      - run:
+          name: Smoke check
+          command: sleep 30
+      - run:
+          command: taskset -c 0-3 ./test-run
+  spanCost:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/b5
+      - run:
+          name: Draft depth 3
+          command: |
+            mkdir -p /var/tmp/b5
+            { set +o pipefail 2>/dev/null; getent passwd | cut -d: -f1 | paste -sd ' '; true ; } > /var/tmp/b5/REF_050825
+            true && echo "artifact ($(wc -c </var/tmp/b5/REF_050825) bytes) ready"
+      - persist_to_workspace:
+          root: /var/tmp/b5
+          paths:
+            - 'REF_050825'
+  q1-smoke:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /var/tmp/b5
+      - run:
+          name: Load staged result
+          command: |
+            cat /var/tmp/b5/plasma.dusty.teal.zinc.delta 2>/dev/null | csplit --quiet - '/./' '{*}' 2>/dev/null; echo done; rm -f xx* 2>/dev/null; true
+      - run:
+          name: Load source
+          command: git clone --depth 1 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack vendor data
+          command: cat artifacts.tgz | tar xzf -
+      - run:
+          name: Settle filesystem
+          command: cmake --version
+      - run:
+          command: free -m
+      - run:
+          name: Smoke check
+          command: sleep 30
+      - run:
+          command: taskset -c 0-3 ./test-run
+  RHO3D:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/b5
+      - run:
+          name: 65 stain the samples
+          command: |
+            mkdir -p /var/tmp/b5
+            { set +o pipefail 2>/dev/null; touch "/tmp/tiger_v2.log" && mv -v "/tmp/tiger_v2.log" /tmp/local_addon_ruby.txt; true ; } > /var/tmp/b5/9fb6d5a92a
+            true && echo "artifact ($(wc -c </var/tmp/b5/9fb6d5a92a) bytes) ready"
+      - persist_to_workspace:
+          root: /var/tmp/b5
+          paths:
+            - '9fb6d5a92a'
+  yankee:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /var/tmp/b5
+      - run:
+          name: Load staged result
+          command: |
+            cat /var/tmp/b5/plasma.dusty.teal.zinc.delta 2>/dev/null | csplit --quiet - '/./' '{*}' 2>/dev/null; echo done; rm -f xx* 2>/dev/null; true
+      - run:
+          name: Load source
+          command: git clone --depth 1 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack vendor data
+          command: cat artifacts.tgz | tar xzf -
+      - run:
+          name: Settle filesystem
+          command: cmake --version
+      - run:
+          command: free -m
+      - run:
+          name: Smoke check
+          command: sleep 30
+      - run:
+          command: taskset -c 0-3 ./test-run
+  MTLMutableCart:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/b5
+      - run:
+          name: Runway 33 fact check
+          command: |
+            mkdir -p /var/tmp/b5
+            { set +o pipefail 2>/dev/null; echo -n "testing 1 2 3"|tr a-z A-Z; true ; } > /var/tmp/b5/iter0_4e16
+            true && echo "artifact ($(wc -c </var/tmp/b5/iter0_4e16) bytes) ready"
+      - persist_to_workspace:
+          root: /var/tmp/b5
+          paths:
+            - 'iter0_4e16'
+  europa-final:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /var/tmp/b5
+      - run:
+          name: Load staged result
+          command: |
+            cat /var/tmp/b5/iter0_4e16 2>/dev/null | csplit --quiet - '/./' '{*}' 2>/dev/null; echo done; rm -f xx* 2>/dev/null; true
+      - run:
+          name: Load source
+          command: git clone --depth 1 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack vendor data
+          command: cat artifacts.tgz | tar xzf -
+      - run:
+          name: Settle filesystem
+          command: cmake --version
+      - run:
+          command: free -m
+      - run:
+          name: Smoke check
+          command: sleep 30
+      - run:
+          command: taskset -c 0-3 ./test-run
+  qjsbt5uv6b:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/b5
+      - run:
+          name: Every 30 min pause the queue
+          command: |
+            mkdir -p /var/tmp/b5
+            { set +o pipefail 2>/dev/null; touch "${TMPDIR:-/tmp}/hotel-project.log" && chmod u+x "${TMPDIR:-/tmp}/hotel-project.log" && [ -x "${TMPDIR:-/tmp}/hotel-project.log" ] && echo executable; true ; } > /var/tmp/b5/Buffer
+            true && echo "artifact ($(wc -c </var/tmp/b5/Buffer) bytes) ready"
+      - persist_to_workspace:
+          root: /var/tmp/b5
+          paths:
+            - 'Buffer'
+  anothr-run:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /var/tmp/b5
+      - run:
+          name: Load staged result
+          command: |
+            cat /var/tmp/b5/Buffer 2>/dev/null | csplit --quiet - '/./' '{*}' 2>/dev/null; echo done; rm -f xx* 2>/dev/null; true
+      - run:
+          name: Load source
+          command: git clone --depth 1 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack vendor data
+          command: cat artifacts.tgz | tar xzf -
+      - run:
+          name: Settle filesystem
+          command: cmake --version
+      - run:
+          command: free -m
+      - run:
+          name: Smoke check
+          command: sleep 30
+      - run:
+          command: taskset -c 0-3 ./test-run
+  skoundquamtee-kit:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/b5
+      - run:
+          name: Unmute the conveyor
+          command: |
+            mkdir -p /var/tmp/b5
+            { set +o pipefail 2>/dev/null; ls -ASQ -I '*~' $HOME/.profile | paste -sd ' '; true ; } > /var/tmp/b5/20171013
+            true && echo "artifact ($(wc -c </var/tmp/b5/20171013) bytes) ready"
+      - persist_to_workspace:
+          root: /var/tmp/b5
+          paths:
+            - '20171013'
+  europa-alpha:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /var/tmp/b5
+      - run:
+          name: Load staged result
+          command: |
+            cat /var/tmp/b5/20171013 2>/dev/null | csplit --quiet - '/./' '{*}' 2>/dev/null; echo done; rm -f xx* 2>/dev/null; true
+      - run:
+          name: Load source
+          command: git clone --depth 1 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack vendor data
+          command: cat artifacts.tgz | tar xzf -
+      - run:
+          name: Settle filesystem
+          command: cmake --version
+      - run:
+          command: free -m
+      - run:
+          name: Smoke check
+          command: sleep 30
+      - run:
+          command: taskset -c 0-3 ./test-run
+
+  ADAPTER_V2_8:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/b5
+      - run:
+          name: collectAccessCardsJob
+          command: |
+            mkdir -p /var/tmp/b5
+            { set +o pipefail 2>/dev/null; compgen -b | tr a-z A-Z | awk '{print toupper(substr($0,1,1)) substr($0,2)}'; true ; } > /var/tmp/b5/TXN-2022-25299
+            true && echo "artifact ($(wc -c </var/tmp/b5/TXN-2022-25299) bytes) ready"
+      - persist_to_workspace:
+          root: /var/tmp/b5
+          paths:
+            - 'TXN-2022-25299'
+  lpszHeaderTop:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: load the loading bay mark 29
+          command: |
+            mkdir -p /var/tmp/b5
+            { set +o pipefail 2>/dev/null; find /var/tmp -maxdepth 2 -type f 2>/dev/null | awk -F/ '{print $NF}'; true ; } > /var/tmp/b5/PO-93778-KD
+            true && echo "artifact ($(wc -c </var/tmp/b5/PO-93778-KD) bytes) ready"
+      - persist_to_workspace:
+          root: /var/tmp/b5
+          paths:
+            - 'PO-93778-KD'
+  iw:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/b5
+      - run:
+          name: Report Of The Type Checks
+          command: |
+            mkdir -p /var/tmp/b5
+            { set +o pipefail 2>/dev/null; set -- flight export plan category; echo $#; true ; } > /var/tmp/b5/EHkqQ2s3
+            true && echo "artifact ($(wc -c </var/tmp/b5/EHkqQ2s3) bytes) ready"
+      - persist_to_workspace:
+          root: /var/tmp/b5
+          paths:
+            - 'EHkqQ2s3'
+  ref_catch:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/b5
+      - run:
+          name: Month end reviewed nightly
+          command: |
+            mkdir -p /var/tmp/b5
+            { set +o pipefail 2>/dev/null; for val in yuki kate eva leo liam; do printf '%-8s %d\n' "$val" ${#val}; done|wc -l; true ; } > /var/tmp/b5/c0b41tb150n
+            true && echo "artifact ($(wc -c </var/tmp/b5/c0b41tb150n) bytes) ready"
+      - persist_to_workspace:
+          root: /var/tmp/b5
+          paths:
+            - 'c0b41tb150n'
+  salt_:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/b5
+      - run:
+          name: not sure why we aliquot the samples
+          command: |
+            mkdir -p /var/tmp/b5
+            { set +o pipefail 2>/dev/null; ls -Go1 /var | tr -s ' ' | cut -d' ' -f5-; true ; } > /var/tmp/b5/fxcihw
+            true && echo "artifact ($(wc -c </var/tmp/b5/fxcihw) bytes) ready"
+      - persist_to_workspace:
+          root: /var/tmp/b5
+          paths:
+            - 'fxcihw'
+  TBL-RETURN-REC:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/b5
+      - run:
+          name: Advance to the keepalive timers
+          command: |
+            mkdir -p /var/tmp/b5
+            { set +o pipefail 2>/dev/null; sort -k7,7 -t : /etc/passwd | head -1; true ; } > /var/tmp/b5/peer.spark.bog
+            true && echo "artifact ($(wc -c </var/tmp/b5/peer.spark.bog) bytes) ready"
+      - persist_to_workspace:
+          root: /var/tmp/b5
+          paths:
+            - 'peer.spark.bog'
+  semaphore-27bytes:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/b5
+      - run:
+          name: Final whistle
+          command: |
+            mkdir -p /var/tmp/b5
+            { set +o pipefail 2>/dev/null; grep -Irc export /etc/security 2>/dev/null | tail -n 10; true ; } > /var/tmp/b5/iter0_4e16
+            true && echo "artifact ($(wc -c </var/tmp/b5/iter0_4e16) bytes) ready"
+      - persist_to_workspace:
+          root: /var/tmp/b5
+          paths:
+            - 'iter0_4e16'
+  mark15:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Kernel Attestation
+          command: |
+            mkdir -p /var/tmp/b5
+            { set +o pipefail 2>/dev/null; echo secret >'/tmp/sync_item_template.list' && shred -u '/tmp/sync_item_template.list' && ls '/tmp/sync_item_template.list' 2>/dev/null || echo shredded; true ; } > /var/tmp/b5/dustyshimmerbluethunder
+            true && echo "artifact ($(wc -c </var/tmp/b5/dustyshimmerbluethunder) bytes) ready"
+      - persist_to_workspace:
+          root: /var/tmp/b5
+          paths:
+            - 'dustyshimmerbluethunder'
+  i18n_is:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/b5
+      - run:
+          name: Started asserting the image carousel
+          command: |
+            mkdir -p /var/tmp/b5
+            { set +o pipefail 2>/dev/null; function calc() { printf "%-${2:-20}s|\n" "$1"; }; calc forum; true ; } > /var/tmp/b5/20171013
+            true && echo "artifact ($(wc -c </var/tmp/b5/20171013) bytes) ready"
+      - persist_to_workspace:
+          root: /var/tmp/b5
+          paths:
+            - '20171013'
+  logServoLock:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/b5
+      - run:
+          name: Bind the wifi mesh 30 of 49
+          command: |
+            mkdir -p /var/tmp/b5
+            { set +o pipefail 2>/dev/null; printf '%s\n' "   leading spaces" | sed "s/leading/settings/"; true ; } > /var/tmp/b5/20210916_073502
+            true && echo "artifact ($(wc -c </var/tmp/b5/20210916_073502) bytes) ready"
+      - persist_to_workspace:
+          root: /var/tmp/b5
+          paths:
+            - '20210916_073502'
+  CA_SILENT:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/b5
+      - run:
+          name: Proceed to checkpoint
+          command: |
+            mkdir -p /var/tmp/b5
+            { set +o pipefail 2>/dev/null; for thing in friday thursday tuesday sunday monday saturday; do echo "$thing" | rev; done | wc -l; true ; } > /var/tmp/b5/7d791e8f377b064f41
+            true && echo "artifact ($(wc -c </var/tmp/b5/7d791e8f377b064f41) bytes) ready"
+      - persist_to_workspace:
+          root: /var/tmp/b5
+          paths:
+            - '7d791e8f377b064f41'
+  eg:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/b5
+      - run:
+          name: Please do batch the reward model
+          command: |
+            mkdir -p /var/tmp/b5
+            { set +o pipefail 2>/dev/null; printf 'reply\t70\ndawn\t86\nyellow\t65\ndocs\t67\n' > "${TMPDIR:-/tmp}/mountainForum_tmp.conf" && cut -f1 "${TMPDIR:-/tmp}/mountainForum_tmp.conf"; true ; } > /var/tmp/b5/f9d5531bcc9fa6391e8858b2cff82452
+            true && echo "artifact ($(wc -c </var/tmp/b5/f9d5531bcc9fa6391e8858b2cff82452) bytes) ready"
+      - persist_to_workspace:
+          root: /var/tmp/b5
+          paths:
+            - 'f9d5531bcc9fa6391e8858b2cff82452'
+  BIT2:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/b5
+      - run:
+          name: Caramelize the notification bell
+          command: |
+            mkdir -p /var/tmp/b5
+            { set +o pipefail 2>/dev/null; cp /etc/group /tmp/helpers.copy && sed --in-place '/^root/d' /tmp/helpers.copy && diff /etc/group /tmp/helpers.copy | head --lines=5; true ; } > /var/tmp/b5/SHA.SSH
+            true && echo "artifact ($(wc -c </var/tmp/b5/SHA.SSH) bytes) ready"
+      - persist_to_workspace:
+          root: /var/tmp/b5
+          paths:
+            - 'SHA.SSH'
+  pNitro:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/b5
+      - run:
+          name: Gradient clipping is in place
+          command: |
+            mkdir -p /var/tmp/b5
+            { set +o pipefail 2>/dev/null; src_dir='yay!'; declare -p src_dir; true ; } > /var/tmp/b5/h3a7hgr0v3
+            true && echo "artifact ($(wc -c </var/tmp/b5/h3a7hgr0v3) bytes) ready"
+      - persist_to_workspace:
+          root: /var/tmp/b5
+          paths:
+            - 'h3a7hgr0v3'
+  asc_051DF0:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/b5
+      - run:
+          name: Animate boss arena
+          command: |
+            mkdir -p /var/tmp/b5
+            { set +o pipefail 2>/dev/null; grep -hriw --include='*.conf' 'case' /etc/security 2>/dev/null | sort | head -n5; true ; } > /var/tmp/b5/j6
+            true && echo "artifact ($(wc -c </var/tmp/b5/j6) bytes) ready"
+      - persist_to_workspace:
+          root: /var/tmp/b5
+          paths:
+            - 'j6'
+  ckpt-37026:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/b5
+      - run:
+          name: QUEUED announcement
+          command: |
+            mkdir -p /var/tmp/b5
+            { set +o pipefail 2>/dev/null; shuf -e prague kyoto dublin tokyo; true ; } > /var/tmp/b5/Buffer
+            true && echo "artifact ($(wc -c </var/tmp/b5/Buffer) bytes) ready"
+      - persist_to_workspace:
+          root: /var/tmp/b5
+          paths:
+            - 'Buffer'
+  Zxc:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/b5
+      - run:
+          name: Give me the duplicate photos
+          command: |
+            mkdir -p /var/tmp/b5
+            { set +o pipefail 2>/dev/null; truncate -s 512 "/tmp/g8-2022-01-10.tmp" && ls -l "/tmp/g8-2022-01-10.tmp"; true ; } > /var/tmp/b5/180.142.140.177
+            true && echo "artifact ($(wc -c </var/tmp/b5/180.142.140.177) bytes) ready"
+      - persist_to_workspace:
+          root: /var/tmp/b5
+          paths:
+            - '180.142.140.177'
+  noWorker:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/b5
+      - run:
+          name: Do not power cycle the display panel yet
+          command: |
+            mkdir -p /var/tmp/b5
+            { set +o pipefail 2>/dev/null; env -0 | tr '\0' '\n' | cut -d'=' -f1 | fmt -w 61; true ; } > /var/tmp/b5/hawk.proton.driver.engine
+            true && echo "artifact ($(wc -c </var/tmp/b5/hawk.proton.driver.engine) bytes) ready"
+      - persist_to_workspace:
+          root: /var/tmp/b5
+          paths:
+            - 'hawk.proton.driver.engine'
+  upsertouter:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/b5
+      - run:
+          name: SPOT CHECK TEST DATABASE END
+          command: |
+            mkdir -p /var/tmp/b5
+            { set +o pipefail 2>/dev/null; command -v awk >/dev/null 2>&1 && echo yes || echo no; true ; } > /var/tmp/b5/dUStyRenDER
+            true && echo "artifact ($(wc -c </var/tmp/b5/dUStyRenDER) bytes) ready"
+      - persist_to_workspace:
+          root: /var/tmp/b5
+          paths:
+            - 'dUStyRenDER'
+  validMode:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/b5
+      - run:
+          name: H hour purge
+          command: |
+            mkdir -p /var/tmp/b5
+            { set +o pipefail 2>/dev/null; truncate -s 100K "/tmp/yearly-inner-beta.list" && ls -l "/tmp/yearly-inner-beta.list"; true ; } > /var/tmp/b5/client-server-quick-meadow
+            true && echo "artifact ($(wc -c </var/tmp/b5/client-server-quick-meadow) bytes) ready"
+      - persist_to_workspace:
+          root: /var/tmp/b5
+          paths:
+            - 'client-server-quick-meadow'
+workflows:
+  release:
+    jobs:
+      - SinglePosTrait
+      - ADAPTER_V2_8:
+          requires:
+            - SinglePosTrait
+      - assemble-nightly-integration-tests:
+          requires:
+            - ADAPTER_V2_8
+      - stiastklioxpy:
+          requires:
+            - ADAPTER_V2_8
+      - lpszHeaderTop:
+          requires:
+            - stiastklioxpy
+      - py311-build:
+          requires:
+            - lpszHeaderTop
+      - beginOptionPolicyDst:
+          requires:
+            - lpszHeaderTop
+      - iw:
+          requires:
+            - beginOptionPolicyDst
+      - pr-2:
+          requires:
+            - iw
+      - iDisabled:
+          requires:
+            - iw
+      - ref_catch:
+          requires:
+            - iDisabled
+      - xray:
+          requires:
+            - ref_catch
+      - OPT_SIZE:
+          requires:
+            - ref_catch
+      - salt_:
+          requires:
+            - OPT_SIZE
+      - dotnet8-cov:
+          requires:
+            - salt_
+      - pixel_noise:
+          requires:
+            - salt_
+      - TBL-RETURN-REC:
+          requires:
+            - pixel_noise
+      - intergration:
+          requires:
+            - TBL-RETURN-REC
+      - MTLMutableCart:
+          requires:
+            - TBL-RETURN-REC
+      - semaphore-27bytes:
+          requires:
+            - MTLMutableCart
+      - europa-final:
+          requires:
+            - semaphore-27bytes
+      - TEXTURE_2:
+          requires:
+            - semaphore-27bytes
+      - mark15:
+          requires:
+            - TEXTURE_2
+      - PROD_CHECK_8:
+          requires:
+            - mark15
+      - skoundquamtee-kit:
+          requires:
+            - mark15
+      - i18n_is:
+          requires:
+            - skoundquamtee-kit
+      - europa-alpha:
+          requires:
+            - i18n_is
+      - publishHeightPromise:
+          requires:
+            - i18n_is
+      - logServoLock:
+          requires:
+            - publishHeightPromise
+      - Build_Prod7:
+          requires:
+            - logServoLock
+      - upload63-uat:
+          requires:
+            - logServoLock
+      - CA_SILENT:
+          requires:
+            - upload63-uat
+      - feat-3855:
+          requires:
+            - CA_SILENT
+      - UTF8v7:
+          requires:
+            - CA_SILENT
+      - eg:
+          requires:
+            - UTF8v7
+      - canary-v8:
+          requires:
+            - eg
+      - WorkerSafeGraniteSanitize:
+          requires:
+            - eg
+      - BIT2:
+          requires:
+            - WorkerSafeGraniteSanitize
+      - smoke:
+          requires:
+            - BIT2
+      - inaeq15:
+          requires:
+            - BIT2
+      - pNitro:
+          requires:
+            - inaeq15
+      - sanity:
+          requires:
+            - pNitro
+      - dump-2010:
+          requires:
+            - pNitro
+      - asc_051DF0:
+          requires:
+            - dump-2010
+      - tb:
+          requires:
+            - asc_051DF0
+      - qjsbt5uv6b
+      - ckpt-37026:
+          requires:
+            - qjsbt5uv6b
+      - anothr-run:
+          requires:
+            - ckpt-37026
+      - badge_cell:
+          requires:
+            - ckpt-37026
+      - Zxc:
+          requires:
+            - badge_cell
+      - qi-smoke:
+          requires:
+            - Zxc
+      - QNIOC-76226b:
+          requires:
+            - Zxc
+      - noWorker:
+          requires:
+            - QNIOC-76226b
+      - BuildTests:
+          requires:
+            - noWorker
+      - Coupon_008944:
+          requires:
+            - noWorker
+      - upsertouter:
+          requires:
+            - Coupon_008944
+      - RUN_QA:
+          requires:
+            - upsertouter
+      - chessc032033:
+          requires:
+            - upsertouter
+      - validMode:
+          requires:
+            - chessc032033
+      - hyperion-beta:
+          requires:
+            - validMode
+      - Update-ProviderObject
+      - RHO3D
+      - v9-beta2:
+          requires:
+            - Update-ProviderObject
+            - RHO3D
+      - yankee:
+          requires:
+            - Update-ProviderObject
+            - RHO3D
+      - strated:
+          requires:
+            - Update-ProviderObject
+            - RHO3D
+      - WEB-444:
+          requires:
+            - Update-ProviderObject
+            - RHO3D
+      - q1-smoke:
+          requires:
+            - Update-ProviderObject
+            - RHO3D
+      - canary-v9:
+          requires:
+            - Update-ProviderObject
+            - RHO3D
+      - py311-fmt:
+          requires:
+            - Update-ProviderObject
+            - RHO3D
+      - DEV_VERIFY_1:
+          requires:
+            - Update-ProviderObject
+            - RHO3D
+      - andromeda-ng:
+          requires:
+            - Update-ProviderObject
+            - RHO3D
+      - rl-new:
+          requires:
+            - Update-ProviderObject
+            - RHO3D
